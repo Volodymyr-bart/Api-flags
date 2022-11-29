@@ -13,3 +13,38 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --fs-sm: 14px;
+  --fs-md: 16px;
+  --fw-lighgt: 300;
+  --fw-normal: 300;
+  --fw-bold: 300;
+
+  --radii: 0.5rem;
+}
+
+body[data-theme='dark'] {
+  --color-text: hsl(0, 0%, 100%);
+  --color-bg: hsl(207, 26%, 17%);
+  --colors-ui-base: hsl(209, 23%, 22%);
+
+  --shadow: rgba(245, 245, 245, 0.2) 0px 8px 24px;
+}
+body[data-theme='light'] {
+  --color-text: hsl(200, 15%, 8%);
+  --color-bg: hsl(0, 0%, 98%);
+  --colors-ui-base: hsl(0, 0%, 100%);
+
+  --shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+body {
+  margin: 0;
+  color: var(--colors-text);
+  font-weight: var(--fw-light);
+  background: var(--color-bg);
+}
