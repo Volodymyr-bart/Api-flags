@@ -13,6 +13,29 @@ export const CustomSelect = styled(Select).attrs({
       boxShadow: 'var(--shadow)',
       height: '50px',
     }),
-    option: provided => ({ ...provided }),
+    option: (provided, state) => ({
+      ...provided,
+      cursor: 'pointer',
+      color: 'var(--color-text)',
+      backgroundColor: state.isSelected
+        ? 'var(--colors-bg)'
+        : 'var(--color-ui-base)',
+    }),
   },
-})``;
+})`
+  width: 200px;
+  border-radius: var(--radii);
+  border: none;
+  & > * {
+    box-shadow: var(--colors-text);
+  }
+  & input {
+    padding-left: 0.25rem;
+  }
+  &* {
+    color: var(--colors-text) !important;
+  }
+  & > div[id] {
+    background-color: var(--color-ui-base);
+  }
+`;
