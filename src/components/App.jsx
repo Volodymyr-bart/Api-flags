@@ -15,6 +15,7 @@ export const App = () => {
     try {
       setRender(false);
       axios.get(ALL_COUNTRIES).then(({ data }) => setCountries(data));
+      // axios.get(All_CONTRIES_INFO).then(({ data }) => console.log(data));
 
       setRender(true);
     } catch (error) {
@@ -31,7 +32,6 @@ export const App = () => {
           <List>
             {countries.length > 0 &&
               countries.map(c => {
-                // console.log(c.name.common);
                 const countryInfo = {
                   img: c.flags.png,
                   name: c.name,
@@ -50,7 +50,7 @@ export const App = () => {
                     },
                   ],
                 };
-                // return console.log(countryInfo);
+
                 return <Card key={c.name.common} {...countryInfo} />;
               })}
           </List>
