@@ -9,9 +9,17 @@ import { Main } from './Main/Main';
 
 export const App = () => {
   const [countries, setCountries] = useState([]);
+  const [render, setRender] = useState(false);
   // console.log(countries);
   useEffect(() => {
-    axios.get(ALL_COUNTRIES).then(({ data }) => setCountries(data));
+    try {
+      setRender(false);
+      axios.get(ALL_COUNTRIES).then(({ data }) => setCountries(data));
+
+      setRender(true);
+    } catch (error) {
+      console.log(error);
+    }
   }, []);
 
   return (
@@ -19,32 +27,34 @@ export const App = () => {
       <Header />
       <Main>
         <Controls />
-        <List>
-          {countries.length > 0 &&
-            countries.map(c => {
-              // console.log(c.name.common);
-              const countryInfo = {
-                img: c.flags.png,
-                name: c.name,
-                info: [
-                  {
-                    title: 'Population',
-                    description: c.population,
-                  },
-                  {
-                    title: 'Region',
-                    description: c.region,
-                  },
-                  {
-                    title: 'Capital',
-                    description: c.capital,
-                  },
-                ],
-              };
-              // return console.log(countryInfo);
-              return <Card key={c.name.common} {...countryInfo} />;
-            })}
-        </List>
+        {render && (
+          <List>
+            {countries.length > 0 &&
+              countries.map(c => {
+                // console.log(c.name.common);
+                const countryInfo = {
+                  img: c.flags.png,
+                  name: c.name,
+                  info: [
+                    {
+                      title: 'Population',
+                      description: c.population,
+                    },
+                    {
+                      title: 'Region',
+                      description: c.region,
+                    },
+                    {
+                      title: 'Capital',
+                      description: c.capital,
+                    },
+                  ],
+                };
+                // return console.log(countryInfo);
+                return <Card key={c.name.common} {...countryInfo} />;
+              })}
+          </List>
+        )}
       </Main>
     </>
   );

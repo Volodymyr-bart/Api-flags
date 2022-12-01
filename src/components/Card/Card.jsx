@@ -7,12 +7,16 @@ const CardTitle = styled.h3``;
 const CardList = styled.ul``;
 const CardListItem = styled.li``;
 
+// {
+//   img, name, (info = []), onClick;
+// }
+// onClick = { onClick };
 export const Card = ({ img, name, info = [], onClick }) => {
   return (
-    <Wrapper onClick={onClick}>
+    <Wrapper>
       <CardImage />
       <CardBody>
-        <CardTitle>{name}</CardTitle>
+        <CardTitle>{name.official}</CardTitle>
         <CardList>
           {info.map(el => (
             <CardListItem key={el.title}>
